@@ -1,0 +1,84 @@
+Description: Better error reporting
+ Introduced in 2.0.11-2 (Sat, 03 Mar 2012).
+ .
+ Applied Upstream: http://hg.libsdl.org/SDL_ttf/rev/b09799bf8dff
+Author: Kevin Locke <kwl7@cornell.edu>
+Last-Update: 2012-03-03
+Bug-Debian: http://bugs.debian.org/405378
+Forwarded: http://bugzilla.libsdl.org/show_bug.cgi?id=1400
+
+# HG changeset patch
+# User Sam Lantinga <slouken@libsdl.org>
+# Date 1327764534 18000
+# Node ID b09799bf8dff36eca61ecc5272cfdcce39b6b186
+# Parent  077db903bfdf89f6cb9a32e8be1f3e5c95d429b4
+Fixed bug 1400 - Lack of error reporting for glyph rendering errors
+
+  I was just bitten by bug 374062 (any word if this will be fixed for
+  etch given that it is fixed upstream?), and found that there is no
+  error message set by sdl-ttf when it is unable to render a glyph,
+  which makes bugs like this a bit more difficult to track down.  I
+  would really appreciate it if TTF_GetError() could return a useful
+  message in such situations.  The attached patch does just that by
+  duplicating the existing error reporting for calls to Find_Glyph()
+  into the places where it is missing, although it might be nice to know
+  which glyph it was that could not be found...
+
+--- a/SDL_ttf.c
++++ b/SDL_ttf.c
+@@ -1155,6 +1155,7 @@
+ 
+ 		error = Find_Glyph(font, c, CACHED_METRICS);
+ 		if ( error ) {
++			TTF_SetFTError("Couldn't find glyph", error);
+ 			return -1;
+ 		}
+ 		glyph = font->current;
+@@ -1364,6 +1365,7 @@
+ 
+ 		error = Find_Glyph(font, c, CACHED_METRICS|CACHED_BITMAP);
+ 		if( error ) {
++			TTF_SetFTError("Couldn't find glyph", error);
+ 			SDL_FreeSurface( textbuf );
+ 			return NULL;
+ 		}
+@@ -1438,6 +1440,7 @@
+ 	/* Get the glyph itself */
+ 	error = Find_Glyph(font, ch, CACHED_METRICS|CACHED_BITMAP);
+ 	if ( error ) {
++		TTF_SetFTError("Couldn't find glyph", error);
+ 		return(NULL);
+ 	}
+ 	glyph = font->current;
+@@ -1630,6 +1633,7 @@
+ 
+ 		error = Find_Glyph(font, c, CACHED_METRICS|CACHED_PIXMAP);
+ 		if( error ) {
++			TTF_SetFTError("Couldn't find glyph", error);
+ 			SDL_FreeSurface( textbuf );
+ 			return NULL;
+ 		}
+@@ -1711,6 +1715,7 @@
+ 	/* Get the glyph itself */
+ 	error = Find_Glyph(font, ch, CACHED_METRICS|CACHED_PIXMAP);
+ 	if( error ) {
++		TTF_SetFTError("Couldn't find glyph", error);
+ 		return NULL;
+ 	}
+ 	glyph = font->current;
+@@ -1887,6 +1892,7 @@
+ 		}
+ 		error = Find_Glyph(font, c, CACHED_METRICS|CACHED_PIXMAP);
+ 		if( error ) {
++			TTF_SetFTError("Couldn't find glyph", error);
+ 			SDL_FreeSurface( textbuf );
+ 			return NULL;
+ 		}
+@@ -1967,6 +1973,7 @@
+ 	/* Get the glyph itself */
+ 	error = Find_Glyph(font, ch, CACHED_METRICS|CACHED_PIXMAP);
+ 	if ( error ) {
++		TTF_SetFTError("Couldn't find glyph", error);
+ 		return(NULL);
+ 	}
+ 	glyph = font->current;

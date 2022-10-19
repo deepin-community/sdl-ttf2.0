@@ -1,0 +1,4 @@
+usr/include/SDL
+usr/lib/*/pkgconfig
+usr/lib/*/libSDL_ttf.a
+usr/lib/*/libSDL_ttf.so

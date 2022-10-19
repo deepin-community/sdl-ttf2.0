@@ -1,0 +1,216 @@
+sdl-ttf2.0 (2.0.11-6) UNRELEASED; urgency=medium
+
+  * update
+
+ -- Debian SDL packages maintainers <pkg-sdl-maintainers@lists.alioth.debian.org>  Tue, 17 May 2022 22:04:27 -0400
+
+sdl-ttf2.0 (2.0.11-6) unstable; urgency=medium
+
+  * Team upload.
+  * Fix FTCBFS: uses the wrong pkg-config. (Closes: #914479)
+
+ -- Felix Geyer <fgeyer@debian.org>  Mon, 04 Feb 2019 19:40:35 +0100
+
+sdl-ttf2.0 (2.0.11-5) unstable; urgency=medium
+
+  * Change wrong override of dh_auto_installchangelogs to dh_installchangelogs
+  * Bump Policy Standards-Version to 4.2.1 (no changes needed)
+  * Switch to debhelper compat level 11
+  * Set "Rules-Requires-Root: no" in d/control
+  * d/copyright: use https in format URL
+  * d/watch:
+    - Switch to version=4
+    - Use https in URL
+  * d/control:
+    - Use https in Homepage URL
+    - Update Vcs-* URLs
+  * d/patches:
+    - add fix-ftbfs-892435.patch: use pkg-config instead of
+      freetype-config, deprecated and about to be removed (Closes: #892435)
+      (adapted from analogous patch for libsdl2-ttf, bug #892441)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 19 Oct 2018 19:17:36 +0200
+
+sdl-ttf2.0 (2.0.11-4) unstable; urgency=medium
+
+  * Bump Policy Standards-Version to 4.0.0 (no changes needed)
+  * Update Vcs-* URLs
+  * Switch to debhelper compat level v10
+    - dh flags --parallel are not needed
+    - autoreconf is invoked by default
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 02 Aug 2017 00:46:08 +0200
+
+sdl-ttf2.0 (2.0.11-3) unstable; urgency=medium
+
+  * Bump Policy Standards-Version to 3.9.5 (no changes needed)
+  * Remove field "DM-Upload-Allowed: yes", obsolete
+  * Change maintainer address to @debian.org
+  * Regenerate with dh_autoreconf without using upstream's autogen.sh
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 20 Dec 2013 15:46:53 +0000
+
+sdl-ttf2.0 (2.0.11-2) unstable; urgency=low
+
+  * Bump Standards-Version to 3.9.3 (no changes needed)
+  * Depend on debhelper>=9~
+    - Remove lintian warning
+      package-needs-versioned-debhelper-build-depends 9
+  * Add lintian override for the slightly different name libSDL-ttf-2.0-0
+  * Use "dh_autoreconf --as-needed" in debian/rules
+  * Change debian/copyright format URI to
+    http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+  * Added patch for "TTF_RenderGlyph_Shaded is broken" (Closes: #661987), thanks
+    Ying-Chun Liu (PaulLiu) for the report and pointing to the fix.
+  * Added patch for "Lack of error reporting for glyph rendering errors"
+    (Closes: #405378), thanks Kevin Locke for the report and providing the the
+    fix (accepted upstream already).
+
+ -- Manuel A. Fernandez Montecelo <manuel.montezelo@gmail.com>  Sat, 03 Mar 2012 15:46:34 +0000
+
+sdl-ttf2.0 (2.0.11-1) unstable; urgency=low
+
+  * New upstream release (Closes: #515122, #595739, #413069, #438749, #594824)
+    - License switched to zlib/libpng
+  * New maintainers
+    - Make package as part of SDL team
+    - Add myself to Uploaders, and setting DM-Upload-Allowed: yes
+    - Remove previous maintainers/uploaders, inactive for years and they have
+      been informed
+  * Changes in packaging:
+    - Switch to debhelper compat level v9 (level 4 before, obsolete)
+      - Greatly simplifying debian/rules accordingly
+      - Build for multiarch (Closes: #653656)
+    - Bump Standards-Version to 3.9.2 (no changes needed)
+    - Added 'source/format', with '3.0 (quilt)'
+    - Modifications to dependencies and build options:
+      - Depending on newer dpkg-dev
+      - Depending on SDL >= 1.2.14 (instead of misc old versions)
+    - debian/copyright: updated license and converted to DEP-5
+    - Modifying slightly the descriptions
+    - lintian source override for versioned debhelper warning
+
+ -- Manuel A. Fernandez Montecelo <manuel.montezelo@gmail.com>  Fri, 27 Jan 2012 11:43:59 +0000
+
+sdl-ttf2.0 (2.0.9-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Explicitly link against libm, fixing FTBFS with --no-undefined.
+    Closes: #556340.
+  * Stop shipping la file. Closes: #631839, 633341.
+
+ -- Regis Boudin <regis@debian.org>  Wed, 28 Sep 2011 20:12:07 +0100
+
+sdl-ttf2.0 (2.0.9-1) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * debian/control:
+    + Make the package binNMU safe.
+
+  [ Samuel Mimram ]
+  * New upstream release.
+  * Removed no_freetype_internals.dpatch and pixel_mode_mono.dpatch,
+    integrated upstream.
+  * Don't ignore errors when cleaning.
+
+ -- Samuel Mimram <smimram@debian.org>  Mon, 23 Jul 2007 14:39:46 +0200
+
+sdl-ttf2.0 (2.0.8-3) unstable; urgency=low
+
+  * Added pixel_mode_mono.dpatch to fix a bug with monochrome bitmaps
+    (thanks Guillaume Cottenceau).
+
+ -- Samuel Mimram <smimram@debian.org>  Tue, 22 Aug 2006 17:02:35 +0000
+
+sdl-ttf2.0 (2.0.8-2) unstable; urgency=low
+
+  * Update config.sub and config.guess in order to be able to build on
+    GNU/kFreeBSD, closes: #373147.
+
+ -- Samuel Mimram <smimram@debian.org>  Tue, 13 Jun 2006 12:39:37 +0000
+
+sdl-ttf2.0 (2.0.8-1) unstable; urgency=low
+
+  * New upstream release.
+  * Added no_freetype_internals.dpatch in order to avoid using freetype
+    internals (cf. http://www.freetype.org/freetype2/freetype-2.2.0.html),
+    closes: #373108.
+  * Added a watch file.
+  * Updated standards version to 3.7.2, no changes needed.
+
+ -- Samuel Mimram <smimram@debian.org>  Mon, 12 Jun 2006 23:04:40 +0000
+
+sdl-ttf2.0 (2.0.7-1) unstable; urgency=low
+
+  * New maintainer.
+  * New upstream release, closes: #318802.
+  * Corrected copyright file, closes: #290203.
+  * Relibtoolized, closes: #269297.
+  * Removed file-opening-fix.dpatch and freetype-fix.dpatch, integrated
+    upstream.
+  * Removed useless call to ldconfig in postinst.
+  * Updated standards version to 3.6.2, no changes needed.
+
+ -- Samuel Mimram <smimram@debian.org>  Wed, 23 Nov 2005 22:04:06 +0100
+
+sdl-ttf2.0 (2.0.6-5) unstable; urgency=low
+
+  * debian/control:
+    - Changed Section field of libsdl-ttf2.0-dev from libs to libdevel.
+
+ -- Jerome Marant <jerome@debian.org>  Sat, 10 Jan 2004 14:59:22 +0100
+
+sdl-ttf2.0 (2.0.6-4) unstable; urgency=low
+
+  * debian/control:
+    - Bumped Standards-Version to 3.6.1.
+    - Added build-dependency on dpatch.
+  * debian/patches/file-opening-fix.dpatch: new patch providing
+    previous fix from Sam Hocevar.
+  * debian/patches/freetype-fix.dpatch: added patch fixing a build
+    failure with last version of Freetype. Closes: Bug#227015.
+    Thanks Daniel Schepler <schepler@math.berkeley.edu>.
+
+ -- Jerome Marant <jerome@debian.org>  Sat, 10 Jan 2004 14:10:04 +0100
+
+sdl-ttf2.0 (2.0.6-3) unstable; urgency=low
+
+  * debian/control:
+    + Set policy to 3.5.10.
+    + Added Sam Hocevar as co-maintainer.
+  * Backported a fix from HEAD for a crash when opening a font file that
+    does not exist.
+
+ -- Sam Hocevar (Debian packages) <sam+deb@zoy.org>  Sun, 15 Jun 2003 13:15:15 +0200
+
+sdl-ttf2.0 (2.0.6-2) unstable; urgency=low
+
+  * config.{guess,sub}: updated again from versions from
+    autotools-dev. Closes: Bug#183661.
+
+ -- Jerome Marant <jerome@debian.org>  Sun,  6 Apr 2003 00:12:06 +0200
+
+sdl-ttf2.0 (2.0.6-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Jerome Marant <jerome@debian.org>  Thu, 20 Mar 2003 19:39:07 +0100
+
+sdl-ttf2.0 (2.0.5-3) unstable; urgency=low
+
+  * debian/control: changed libsdl-ttf2.0-0 section from devel
+    to libs.
+
+ -- Jerome Marant <jerome@debian.org>  Sat,  8 Mar 2003 15:30:56 +0100
+
+sdl-ttf2.0 (2.0.5-2) unstable; urgency=low
+
+  * config.{guess,sub}: updated from versions from autotools-dev.
+
+ -- Jerome Marant <jerome@debian.org>  Thu,  6 Mar 2003 21:40:49 +0100
+
+sdl-ttf2.0 (2.0.5-1) unstable; urgency=low
+
+  * Initial Release. Closes: Bug#174871.
+
+ -- Jerome Marant <jerome@debian.org>  Sat,  1 Mar 2003 12:19:52 +0100

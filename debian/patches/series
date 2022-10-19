@@ -1,0 +1,4 @@
+link_libm_ftbfs_binutils-gold
+fix_bug_405378_error_reporting_upstream_b09799bf8dff
+fix_bug_661987_TTF_RenderGlyph_Shaded_is_broken
+fix-ftbfs-892435.patch

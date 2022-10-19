@@ -1,0 +1,16 @@
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -36,6 +36,13 @@
+ 	-version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
+ endif
+ 
++# Manuel A. Fernandez Montecelo <manuel.montezelo@gmail.com>
++#
++# 20120127
++# Fix for http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=556340
++# FTBFS with binutils-gold
++libSDL_ttf_la_LDFLAGS += -lm
++
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = SDL_ttf.pc
+ 
